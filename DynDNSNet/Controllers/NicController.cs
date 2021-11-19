@@ -14,7 +14,7 @@ namespace DynDNSNet.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [Authorize]
+    [Authorize(AuthenticationSchemes = "BasicAuthentication")]
     public class NicController : ControllerBase
     {
         private readonly SqlDbContext _dbContext;
