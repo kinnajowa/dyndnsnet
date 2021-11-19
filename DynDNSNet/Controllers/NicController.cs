@@ -54,7 +54,7 @@ namespace DynDNSNet.Controllers
             domain.Ip = update.MyIp;
             domain.IpV6 = update.MyIpV6;
 
-            var success = await _apiService.UpdateDomain(domain.Hostname, "", domain.Ip, domain.IpV6);
+            var success = await _apiService.UpdateDomain(domain.Hostname, domain.Subdomain, domain.Ip, domain.IpV6);
 
             if (success)
             {

@@ -25,9 +25,12 @@ namespace DynDNSNet.Services
 
         public async Task<bool> UpdateDomain(string domain, string name, string ip, string ipv6 = null)
         {
+            //get and parse zone info from api backend
             var body =  await _httpClient.GetAsync($"zones/{domain}");
             var zone = (Zone) JsonSerializer.Deserialize(await body.Content.ReadAsStringAsync(), typeof(Zone));
             
+            
+            //search for A and AAAA entries and update them
             bool A = false;
             bool AAAA = false;
 
@@ -63,10 +66,14 @@ namespace DynDNSNet.Services
                 new_sets.Add(new RRSet { comments = new List<Comment>(), name = entry_name, records = new List<Record> {new Record {content = ipv6, disabled = false}}, ttl = 60, type = "AAAA", changetype = "REPLACE"});
             }
 
+            //set rrset to new generated rrset
             zone.rrsets = new_sets;
 
+            //update rrset
             var patchBody = new StringContent(JsonSerializer.Serialize(zone), Encoding.UTF8, "application/json");
             var responsUpdate = await _httpClient.PatchAsync($"zones/{domain}", patchBody);
+            
+            //notify all slaves
             var responseNotify = await _httpClient.PutAsync($"zones/{domain}/notify", null);
             return responseNotify.IsSuccessStatusCode & responsUpdate.IsSuccessStatusCode;
         }
