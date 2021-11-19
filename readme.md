@@ -1,9 +1,9 @@
-Set following Variables:
+To start the docker container set following variables:
 
-- ENV DnsApi__Host=http://localhost:8081
-- ENV DnsApi__Secret=<YourSecret>
-- ENV Db__Server=localhost
-- ENV Db__Port=3306
-- ENV Db__Database=dyndns
-- ENV Db__User=dyndns
-- ENV Db__Password=dyndnsdyndns
+- ENV DnsApi__Host=http://[PDNS IP or Hostname]:[PDNS Api Port default=8081]
+- ENV DnsApi__Secret=[Pdns Api Secret]
+- ENV Db__Server=[MySql database Ip or Hostname]
+- ENV Db__Port=[MySql server Port]
+- ENV Db__Database=[dyndns database]
+- ENV Db__User=[dyndns username]
+- ENV Db__Password=[dyndns password]
