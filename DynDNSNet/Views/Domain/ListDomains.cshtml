@@ -1,6 +1,45 @@
+@using DynDNSNet.Entities
+@model ICollection<Domain>
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Domains";
 }
 
-<h1>Hi</h1>
+<h1>Domains</h1>
+<hr />
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Hostname</th>
+        <th scope="col">Subdomain</th>
+        <th scope="col">Ip</th>
+        <th scope="col">IpV6</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var domain in Model) {
+        <tr>
+            <th scope="row">@domain.Id</th>
+            <td>@domain.Hostname</td>
+            <td>@domain.Subdomain</td>
+            <td>@domain.Ip</td>
+            <td>@domain.IpV6</td>
+        </tr>
+    }
+    </tbody>
+</table>
+<script>
+var navList = document.getElementById("main_nav_list").children;
+for (var i = 0; i < navList.length; i++) {
+    var li = navList.item(i);
+    var node = li.firstElementChild;
+    
+    if (node.href === "/Domain") {
+       node.classList.add("active");
+    } else {
+       node.classList.remove("active");
+   }
+}
+console.log("moin");
+</script>
