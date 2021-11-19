@@ -46,6 +46,11 @@ namespace DynDNSNet.DbContexts
                     .HasMaxLength(39)
                     .UseCollation("utf8_general_ci")
                     .HasCharSet("utf8");
+
+                entity.Property(e => e.Subdomain)
+                    .HasMaxLength(45)
+                    .UseCollation("utf8_general_ci")
+                    .HasCharSet("utf8");
             });
 
             modelBuilder.Entity<Domainuser>(entity =>

@@ -16,6 +16,7 @@ namespace DynDNSNet.Entities
         public string Hostname { get; set; }
         public string Ip { get; set; }
         public string IpV6 { get; set; }
+        public string Subdomain { get; set; }
 
         public virtual ICollection<Domainuser> Domainusers { get; set; }
     }
