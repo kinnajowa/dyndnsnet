@@ -1,3 +1,5 @@
+This project is available as a docker containert [here](https://hub.docker.com/repository/docker/kinnajowa/dyndnsnet).
+
 To start the docker container set following variables:
 
 - ENV DnsApi__Host=http://[PDNS IP or Hostname]:[PDNS Api Port default=8081]
